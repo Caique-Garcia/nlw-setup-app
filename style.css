@@ -110,3 +110,7 @@ input:checked {
         display: none;
     }
 }
+
+.img-habits {
+    width: 60%;
+}

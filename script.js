@@ -13,12 +13,30 @@ function add() {
   const today = new Date().toLocaleDateString('pt-br').slice(0, -5)
   const dayExists = nlwSetup.dayExists(today)
 
+  //Recuperando elementos da Janela de resposta do registro
+  let modal = document.getElementById('modal')
+  let titleModal = document.getElementById('exampleModalLabel')
+  let textModal = document.getElementById('text')
+  let btnModal = document.getElementById('btn_modal')
+
   if (dayExists) {
-    alert("Dia já incluso!")
+    modal.className = 'modal-header text-danger'
+    titleModal.textContent = 'Erro na gravação.'
+    textModal.textContent = `O registro do dia ${today} já foi gerado.`
+    btnModal.className = 'btn btn-danger'
+    btnModal.textContent = 'Voltar'
+
+    $('#record').modal('show')
     return
   }
 
-  alert("Dia adicionado com sucesso!")
+  modal.className = 'modal-header text-success'
+  titleModal.textContent = 'Dia inserido com sucesso.'
+  textModal.textContent = 'Registre seus habitos de hoje.'
+  btnModal.className = 'btn btn-success'
+  btnModal.textContent = 'Ok'
+
+  $('#record').modal('show')
   nlwSetup.addDay(today)
 }
 
